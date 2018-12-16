@@ -572,14 +572,21 @@ export default class extends Component {
   renderNextButton = () => {
     let button = null
 
-    if (this.props.loop ||
-      this.state.index !== this.state.total - 1) {
-      button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
-    }
+      button = this.props.nextButton || <Text style={styles.buttonText}></Text>;
+
+      if (this.props.nextBtnLastSlide) {
+        button = this.props.nextBtnLastSlide;
+      }
 
     return (
       <TouchableOpacity
-        onPress={() => button !== null && this.scrollBy(1)}
+        onPress={() => {
+         if (button !== null )
+          {this.props.nextButtonFunction().then((res) => {
+            this.scrollBy(1);
+          });
+          }
+        }}
         disabled={this.props.disableNextButton}
       >
         <View>
@@ -597,7 +604,15 @@ export default class extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={() => button !== null && this.scrollBy(-1)}>
+      <TouchableOpacity onPress={() => 
+        {
+         if (button !== null )
+          { this.props.nextButtonFunction().then((res) => {
+            this.scrollBy(-1);
+          });
+          }
+        }}
+        >
         <View>
           {button}
         </View>

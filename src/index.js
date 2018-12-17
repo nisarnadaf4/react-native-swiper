@@ -582,7 +582,7 @@ export default class extends Component {
       <TouchableOpacity
         onPress={() => {
          if (button !== null )
-          {this.props.nextButtonFunction().then((res) => {
+          {this.props.buttonFunction().then((res) => {
             this.scrollBy(1);
           });
           }
@@ -607,7 +607,7 @@ export default class extends Component {
       <TouchableOpacity onPress={() => 
         {
          if (button !== null )
-          { this.props.nextButtonFunction().then((res) => {
+          { this.props.buttonFunction().then((res) => {
             this.scrollBy(-1);
           });
           }
